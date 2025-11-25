@@ -20,23 +20,14 @@ app.set('view engine', 'ejs') //määritetään appi käyttämään ejs template
 
 //---- ROUTES (ENDPOINTS)--------------------------
 app.get('/', (req, res) => {
-    const userAgent = req.headers['user-agent']
-    console.log(userAgent)
-
-    const userLocale = req.headers['accept-language']
-    console.log(userLocale)
-    
-    // res.send('Hello World!')
-
-    //req.session.user ||
-
     const randomIndex = Math.floor(Math.random() * sanMod.sanonnat.length);
     const randomQuote = sanMod.sanonnat[randomIndex];
 
     res.render('index', {randomQuote})
+})
 
-    //const username = "JOULUPUKKI"
-    //res.render('index', {username}) //hakee index.ejs tiedoston views-kansiosta
+app.get('/login', (req, res) => {
+    res.render('login')
 })
 
 app.listen(port, () => {
