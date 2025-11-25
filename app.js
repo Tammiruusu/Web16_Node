@@ -14,9 +14,9 @@ app.set('view engine', 'ejs') //määritetään appi käyttämään ejs template
 
 //-----MIDLLEWARE-----------------------------------
 
+app.use(express.urlencoded( {extended: false}))
 
-
-
+//---- FUNCTIONS----------------------------------
 
 //---- ROUTES (ENDPOINTS)--------------------------
 app.get('/', (req, res) => {
@@ -30,7 +30,10 @@ app.get('/login', (req, res) => {
     res.render('login')
 })
 
+app.post('/login', (req, res) => {
+   res.redirect('/welcome', {kayttajanimi:req.body.username})
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
-

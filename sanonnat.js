@@ -16,7 +16,17 @@ let sanonnat = ['"Taiteilijat ovat tavattoman herkkiä. — Nipsu, Tove Jansson"
                 '"Eihän sitä aina voi olla ystävällinen ja seurallinen. Ei yksinkertaisesti ehdi. — Nuuskamuikkunen, Tove Jansson"', 
                 '"Sellainen henkilö, joka syö pannukakkua ja hilloa, ei voi olla kauhean vaarallinen. — Pikku Myy, Tove Jansson"', 
                 '"Minä en poimi kukkasia enkä lahjoita kenellekään suklaarasioita. Minä popsin suklaat itse! — Nipsu, Tove Jansson"', 
-                '"Kun minä jotakin jysäytän, niin se ei totisesti ole mikään kamelin pieru! — Noita, Tove Jansson"']
+                '"Kun minä jotakin jysäytän, niin se ei totisesti ole mikään kamelin pieru! — Noita, Tove Jansson"', 
+                '"Ironisia henkilöitä ei kannata piestä. — Tove Jansson, Tuu-tikki"', 
+                '"Pienuuttani minä kompensoin ilkeydellä. — Pikku Myy, Tove Jansson"', 
+                '"Yksi asia sinussa on mainio, Hemuli sanoi luottamuksellisesti. Sinä puhut niin vähän. Sinä vaikutat kamalan viisaalta sen takia ettet koskaan sano mitään. — Hemuli, Tove Jansson"', 
+                '"Ellei joku satu tietämään mitä eläkkeelle pääseminen merkitsee, niin kerrotaan asia: kun tulee tarpeeksi vanhaksi, saa kaikessa rauhassa tehdä juuri mitä haluaa. — Hemuli, Tove Jansson"', 
+                '"Kuinka minä voin elää ellen saa siivota enkä laittaa ruokaa? Eihän maailmassa ole mitään muuta mikä maksaa vaivan. — Tove Jansson, Viljonkka"', 
+                '"Seuraavana keväänä minun on herättävä ennen muita. Silloin saa olla hetken rauhassa ja tehdä mitä haluaa. — Muumimamma, Tove Jansson"', 
+                '"Pienikin olento voi olla hyvin rohkea. — Muumipappa, Tove Jansson"', 
+                '"Kummallista miten hyvin välistä ymmärtää toisiaan puhumatta. — Muumipappa, Tove Jansson"', 
+                '"Pidä varasi ettet päästä asioita kasvamaan liian suuriksi. — Nuuskamuikkunen, Tove Jansson"', 
+                '"Jos kaksi höperöä asuu samassa saaressa, niin he joko tietävät toisistaan kaiken tai eivät halua tietää toisistaan mitään. — Pikku Myy, Tove Jansson"']
 
 
 module.exports = {sanonnat};
