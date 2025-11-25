@@ -1,11 +1,15 @@
 const express = require('express')
 const session = require('express-session')
 const sanMod = require('./sanonnat')
+const fs = require('node:fs');
+const content = 'Some content!';
 
 //luodaan express applikaatio (expressjs.com)
 const app = express()
 //määritetään käytettävä portti
 const port = 3000
+
+
 
 app.set('view engine', 'ejs') //määritetään appi käyttämään ejs template enginenä
                         // ejs oletuksena hakee ejs-tiedostot views-kansiosta
@@ -41,19 +45,53 @@ app.post('/login', (req, res) => {
 
 
 
-app.get('/saveuser', (req, res) => {
-    res.render('saveuser')
-})
+app.get('/', (req, res) => {
+  
 
+});
+
+
+// Handle form submission
 app.post('/saveuser', (req, res) => {
-  try {
-  fs.writeFileSync('./saveuser.txt', content);
-  // file written successfully
-} catch (err) {
-  console.error(err);
-}
-   res.redirect('/')
-})
+    const username = req.body.username;
+
+    if (!username) {
+        return res.send('Username is required!');
+    }
+
+    // Define file path
+    const filePath = path.join(__dirname, 'saveuser.txt');
+
+    // Append username to the file with a newline
+    fs.appendFile(filePath, username + '
+', (err) => {
+        if (err) {
+            console.error('Error saving username:', err);
+            return res.status(500).send('Internal Server Error');
+        }
+        res.send(`Username "${username}" saved successfully!`);
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+// app.get('/saveuser', (req, res) => {
+//     res.render('saveuser')
+// })
+
+// app.post('/saveuser', (req, res) => {
+
+//    res.redirect('/')
+// })
 
 
 
