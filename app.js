@@ -18,10 +18,12 @@ app.use(express.urlencoded( {extended: false}))
 
 //---- FUNCTIONS----------------------------------
 
+
 //---- ROUTES (ENDPOINTS)--------------------------
 app.get('/', (req, res) => {
-    const randomIndex = Math.floor(Math.random() * sanMod.sanonnat.length);
-    const randomQuote = sanMod.sanonnat[randomIndex];
+  const randomIndex = Math.floor(Math.random() * sanMod.sanonnat.length);
+  const randomQuote = sanMod.sanonnat[randomIndex];
+
 
     res.render('index', {randomQuote})
 })
@@ -31,8 +33,29 @@ app.get('/login', (req, res) => {
 })
 
 app.post('/login', (req, res) => {
-   res.redirect('/welcome', {kayttajanimi:req.body.username})
+  const randomIndex = Math.floor(Math.random() * sanMod.sanonnat.length);
+  const randomQuote = sanMod.sanonnat[randomIndex];
+
+   res.render('welcome', {kayttajanimi:req.body.username, randomQuote:randomQuote})
 })
+
+
+
+app.get('/saveuser', (req, res) => {
+    res.render('saveuser')
+})
+
+app.post('/saveuser', (req, res) => {
+  try {
+  fs.writeFileSync('./saveuser.txt', content);
+  // file written successfully
+} catch (err) {
+  console.error(err);
+}
+   res.redirect('/')
+})
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

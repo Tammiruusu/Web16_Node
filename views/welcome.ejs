@@ -15,17 +15,30 @@
             color: rgb(247, 96, 50);
         }
 
-        h2{
+        #h2{
             font-size: 25px;
             color: rgb(245, 165, 113);
+            font-weight: 400;
         }
+
+        #h3{
+            color: rgb(243, 101, 101);
+            font-size: 20px;
+        }
+
     </style>
 </head>
 <body>
-    <h1> Muumien sanonnat </h1>
 
-    <h2><%= kayttajanimi %> </h2>
+    <center>
 
+    <h1> Tervetuloa </h1>
+
+    <p id="h3"><%= kayttajanimi %></p>
+
+    <p id="h2"><%= randomQuote %> </p>
+
+    </center>
 
 </body>
 </html>
