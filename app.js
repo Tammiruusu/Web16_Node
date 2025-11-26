@@ -5,6 +5,7 @@ const sanMod = require('./sanonnat')
 const fs = require('fs')
 const ff = require('./file_functions')
 
+
 //luodaan express applikaatio (expressjs.com)
 const app = express()
 //määritetään käytettävä portti
@@ -61,13 +62,10 @@ app.get('/saveuser', (req,res)=>{
 app.post('/saveuser', (req,res)=>{
   const username = req.body.username
   const password = req.body.password
-  //fs.appendFileSync('kayttajat.txt',`USERNAME=${username}\nPASSWORD=${password}`)
-  
-  // tai jos haluaa vain käyttäjänimen:
-  //fs.appendFileSync('kayttajat.txt',username)
-  
-  //tai jos käyttää ulkopuolisesta moduulia tiedostoon kirjoittamista
-  ff.appendToKayttajat(username,password)
+
+  //Muumipappa on käyttäjänimi ja piippu salasana
+
+  ff.saveUserToJson(username, password)
   res.redirect('/')
 })
 
