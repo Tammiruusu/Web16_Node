@@ -31,8 +31,10 @@ app.use(express.urlencoded( {extended: false}))
 
 
 app.get('/', (req, res) => {
-  const randomIndex = Math.floor(Math.random() * sanMod.sanonnat.length);
-  const randomQuote = sanMod.sanonnat[randomIndex];
+    const randomIndex = Math.floor(Math.random() * sanMod.sanonnat.length);
+    const randomQuote = sanMod.sanonnat[randomIndex];
+    const users = ff.loadUsers('users.json')
+    console.log(users[0])
 
 
     res.render('index', {randomQuote})
@@ -46,6 +48,9 @@ app.get('/login', (req, res) => {
 app.post('/login', async(req, res) => {
     const randomIndex = Math.floor(Math.random() * sanMod.sanonnat.length);
     const randomQuote = sanMod.sanonnat[randomIndex];
+
+    const users = ff.loadUsers('users.json')
+    console.log(users[0])
 
     const user = req.body.username
     const hashed = "$2b$12$/F784Xp2mRDdpVM5P86R7uAzKZCRaTAOgHNcVO/42l2GiYBGqM1sy"

@@ -44,8 +44,13 @@ async function checkPassword(password, hash) {
     }
 }
 
+function loadUsers(file) {
+    if (!fs.existsSync(file)) return [];
+    return JSON.parse(fs.readFileSync(file));
+}
 
-module.exports = {appendToKayttajat, saveUserToJson, checkPassword}
+
+module.exports = {appendToKayttajat, saveUserToJson, checkPassword, loadUsers}
 
 
 
