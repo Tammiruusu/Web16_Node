@@ -52,26 +52,23 @@ app.get('/', (req, res) => {
 
 
 // Handle form submission
-app.post('/saveuser', (req, res) => {
-    const username = req.body.username;
 
-    if (!username) {
-        return res.send('Username is required!');
-    }
+app.get('/save-user', (req,res)=>{
+  res.render('save_user')
+})
 
-    // Define file path
-    const filePath = path.join(__dirname, 'saveuser.txt');
-
-    // Append username to the file with a newline
-    fs.appendFile(filePath, username + '
-', (err) => {
-        if (err) {
-            console.error('Error saving username:', err);
-            return res.status(500).send('Internal Server Error');
-        }
-        res.send(`Username "${username}" saved successfully!`);
-    });
-});
+app.post('/save-user', (req,res)=>{
+  const username = req.body.username
+  const password = req.body.password
+  //fs.appendFileSync('kayttajat.txt',`USERNAME=${username}\nPASSWORD=${password}`)
+  
+  // tai jos haluaa vain käyttäjänimen:
+  //fs.appendFileSync('kayttajat.txt',username)
+  
+  //tai jos käyttää ulkopuolisesta moduulia tiedostoon kirjoittamista
+  ff.appendToKayttajat(username,password)
+  res.redirect('/')
+})
 
 
 
