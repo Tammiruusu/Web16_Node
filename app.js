@@ -1,8 +1,9 @@
 const express = require('express')
 const session = require('express-session')
 const sanMod = require('./sanonnat')
-const fs = require('node:fs');
-const content = 'Some content!';
+//const ff = require('./file_functions')
+const fs = require('fs')
+const ff = require('./file_functions')
 
 //luodaan express applikaatio (expressjs.com)
 const app = express()
@@ -53,11 +54,11 @@ app.get('/', (req, res) => {
 
 // Handle form submission
 
-app.get('/save-user', (req,res)=>{
-  res.render('save_user')
+app.get('/saveuser', (req,res)=>{
+  res.render('saveuser')
 })
 
-app.post('/save-user', (req,res)=>{
+app.post('/saveuser', (req,res)=>{
   const username = req.body.username
   const password = req.body.password
   //fs.appendFileSync('kayttajat.txt',`USERNAME=${username}\nPASSWORD=${password}`)
