@@ -5,6 +5,8 @@ const sanMod = require('./sanonnat')
 const fs = require('fs')
 const ff = require('./file_functions')
 
+const path = require('path')
+
 
 //luodaan express applikaatio (expressjs.com)
 const app = express()
@@ -26,6 +28,8 @@ app.use(express.urlencoded( {extended: false}))
 
 
 //---- ROUTES (ENDPOINTS)--------------------------
+
+
 app.get('/', (req, res) => {
   const randomIndex = Math.floor(Math.random() * sanMod.sanonnat.length);
   const randomQuote = sanMod.sanonnat[randomIndex];
@@ -35,14 +39,25 @@ app.get('/', (req, res) => {
 })
 
 app.get('/login', (req, res) => {
-    res.render('login')
+    res.render('login', {virhe:""})
 })
 
-app.post('/login', (req, res) => {
-  const randomIndex = Math.floor(Math.random() * sanMod.sanonnat.length);
-  const randomQuote = sanMod.sanonnat[randomIndex];
 
-   res.render('welcome', {kayttajanimi:req.body.username, randomQuote:randomQuote})
+app.post('/login', async(req, res) => {
+    const randomIndex = Math.floor(Math.random() * sanMod.sanonnat.length);
+    const randomQuote = sanMod.sanonnat[randomIndex];
+
+    const user = req.body.username
+    const hashed = "$2b$12$/F784Xp2mRDdpVM5P86R7uAzKZCRaTAOgHNcVO/42l2GiYBGqM1sy"
+    const passwordCorrect = await ff.checkPassword(req.body.password, hashed)
+
+    if (passwordCorrect == true){
+        res.render('welcome', {kayttajanimi:req.body.username, randomQuote:randomQuote})    
+    }
+    else {
+        res.render('login', {virhe: "Virheelliset tiedot"})
+    }
+    
 })
 
 

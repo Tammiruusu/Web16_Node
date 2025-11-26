@@ -31,7 +31,21 @@ async function saveUserToJson(username,password){
 
 }
 
-module.exports = {appendToKayttajat, saveUserToJson}
+
+async function checkPassword(password, hash) {
+    const match = await bcrypt.compare(password,hash)
+    if(match){
+        console.log("salasana oikein")
+        return true;
+    }
+    else{
+        console.log("Väärä salasana")
+        return false;
+    }
+}
+
+
+module.exports = {appendToKayttajat, saveUserToJson, checkPassword}
 
 
 
