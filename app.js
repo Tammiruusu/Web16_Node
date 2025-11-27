@@ -71,8 +71,8 @@ app.post('/login', async(req, res) => {
     } else {
       res.render('login', {virhe: "Virheelliset tiedot"})
       console.log(`Username "${user}" not found.`);
-    }
-  }; 
+    }}
+  })
 
     // if (!usernameExists || !passwordExists) {
     //   res.render('login', {virhe: "Virheelliset tiedot"})
@@ -89,8 +89,7 @@ app.post('/login', async(req, res) => {
     // else {
     //     res.render('login', {virhe: "Virheelliset tiedot"})
     // }
-    
-})
+
 
 
 // app.get('/', (req, res) => {

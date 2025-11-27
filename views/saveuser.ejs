@@ -26,14 +26,19 @@
             background-color: rgb(245, 165, 113);
             color: rgb(1, 33, 46);
         }
+        
+        h1{
+            font-size: 45px;
+            font-weight: bolder;
+            color: rgb(247, 96, 50);
+        }
 
     </style>
 </head>
 <body>
     <center>
-    <h1> Tervetuloa</h1><br>
-
         <form method="post" id="login_form" action="/saveuser">
+                <h1> Tervetuloa</h1><br>
             <p>
                 <label for="username">Username:</label>
                 <input type="text" name="username">                
@@ -43,7 +48,7 @@
                 <input type="password" name="password">                
             </p>
             <p>
-                <input type="submit" id="submit_button" value="SAVE USER">
+                <input type="submit" id="submit_button" value="Rekisteröidy">
             </p>        
         </form>
         </center>
