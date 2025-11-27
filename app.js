@@ -57,21 +57,40 @@ app.post('/login', async(req, res) => {
     let usernameExists = false;
     let passwordExists = false;
 
+    for (let i = 0; i < users.length; i++) {
+      if (users[i].username === usernameExists) {
+        usernameExists  = true;
+        res.render('welcome', {kayttajanimi:req.body.username, randomQuote:randomQuote})
+        console.log(`User exists: ${usernameExists }`);
+        break; // Exit loop as we found a match
+      }else {
+      res.render('login', {virhe: "Virheelliset tiedot"})
+      console.log(`Username "${user}" not found.`);
+    }
+    }
+
+    // console.log(`User exists: ${userExists}`);
+
+
+
+
     // Iterate over the array using forEach
     // users.forEach(u => {
     //for (u of users) voi breakata, for eachiä ei voi breakata, vaan koodi käy kaikki usenamet läpi yksi kerrallaan ja siirtyy elseen muuten. 
-    for (u of users) {
-      if (u.username === user || u.password === pWord) { // assuming each user object has a 'username' property
-        console.log(`Username "${user}" found!`);
-        usernameExists = true;
-        console.log(`Password"${pWord}" found!`);
-        passwordExists = true;
-        res.render('welcome', {kayttajanimi:req.body.username, randomQuote:randomQuote})
-        break
-    } else {
-      res.render('login', {virhe: "Virheelliset tiedot"})
-      console.log(`Username "${user}" not found.`);
-    }}
+
+    
+    // for (u of users) {
+    //   if (u.username === user || u.password === pWord) { // assuming each user object has a 'username' property
+    //     console.log(`Username "${user}" found!`);
+    //     usernameExists = true;
+    //     console.log(`Password"${pWord}" found!`);
+    //     passwordExists = true;
+    //     res.render('welcome', {kayttajanimi:req.body.username, randomQuote:randomQuote})
+    //     break
+    // } else {
+    //   res.render('login', {virhe: "Virheelliset tiedot"})
+    //   console.log(`Username "${user}" not found.`);
+    // }}
   })
 
     // if (!usernameExists || !passwordExists) {
