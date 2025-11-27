@@ -48,35 +48,41 @@ app.get('/login', (req, res) => {
 app.post('/login', async(req, res) => {
     const randomIndex = Math.floor(Math.random() * sanMod.sanonnat.length);
     const randomQuote = sanMod.sanonnat[randomIndex];
-
+    //hakee users.json tiedostosta arrayn 
     const users = ff.loadUsers('users.json','utf-8')
+    //Hakee Bodysta Usernamen
     const user = req.body.username
+    const pWord = req.body.password
     
     let usernameExists = false;
+    let passwordExists = false;
 
     // Iterate over the array using forEach
     users.forEach(u => {
-      if (u.username === user) { // assuming each user object has a 'username' property
+      if (u.username === user || u.password=== pWord) { // assuming each user object has a 'username' property
         console.log(`Username "${user}" found!`);
         usernameExists = true;
+        console.log(`Password"${pWord}" found!`);
+        passwordExists = true;
+        res.render('welcome', {kayttajanimi:req.body.username, randomQuote:randomQuote})
         // Note: cannot break out of forEach, but can use a flag
-    }
-    });
+    }}); 
 
-    if (!usernameExists) {
+    if (!usernameExists || !passwordExists) {
+      res.render('login', {virhe: "Virheelliset tiedot"})
       console.log(`Username "${user}" not found.`);
     }
 
 
-    const hashed = "$2b$12$/F784Xp2mRDdpVM5P86R7uAzKZCRaTAOgHNcVO/42l2GiYBGqM1sy"
-    const passwordCorrect = await ff.checkPassword(req.body.password, hashed)
+    // const hashed = "$2b$12$/F784Xp2mRDdpVM5P86R7uAzKZCRaTAOgHNcVO/42l2GiYBGqM1sy"
+    // const passwordCorrect = await ff.checkPassword(req.body.password, hashed)
 
-    if (passwordCorrect == true){
-        res.render('welcome', {kayttajanimi:req.body.username, randomQuote:randomQuote})    
-    }
-    else {
-        res.render('login', {virhe: "Virheelliset tiedot"})
-    }
+    // if (passwordCorrect == true){
+    //     res.render('welcome', {kayttajanimi:req.body.username, randomQuote:randomQuote})    
+    // }
+    // else {
+    //     res.render('login', {virhe: "Virheelliset tiedot"})
+    // }
     
 })
 
