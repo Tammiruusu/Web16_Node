@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
     const randomIndex = Math.floor(Math.random() * sanMod.sanonnat.length);
     const randomQuote = sanMod.sanonnat[randomIndex];
     const users = ff.loadUsers('users.json')
-    console.log(users[0])
+    console.log(users)
 
 
     res.render('index', {randomQuote})
@@ -49,10 +49,25 @@ app.post('/login', async(req, res) => {
     const randomIndex = Math.floor(Math.random() * sanMod.sanonnat.length);
     const randomQuote = sanMod.sanonnat[randomIndex];
 
-    const users = ff.loadUsers('users.json')
-    console.log(users[0])
-
+    const users = ff.loadUsers('users.json','utf-8')
     const user = req.body.username
+    
+    let usernameExists = false;
+
+    // Iterate over the array using forEach
+    users.forEach(u => {
+      if (u.username === user) { // assuming each user object has a 'username' property
+        console.log(`Username "${user}" found!`);
+        usernameExists = true;
+        // Note: cannot break out of forEach, but can use a flag
+    }
+    });
+
+    if (!usernameExists) {
+      console.log(`Username "${user}" not found.`);
+    }
+
+
     const hashed = "$2b$12$/F784Xp2mRDdpVM5P86R7uAzKZCRaTAOgHNcVO/42l2GiYBGqM1sy"
     const passwordCorrect = await ff.checkPassword(req.body.password, hashed)
 
@@ -64,7 +79,6 @@ app.post('/login', async(req, res) => {
     }
     
 })
-
 
 
 app.get('/', (req, res) => {

@@ -44,6 +44,19 @@ async function checkPassword(password, hash) {
     }
 }
 
+async function checkUser(password, hash) {
+    const match = await bcrypt.compare(password,hash)
+    if(match){
+        console.log("salasana oikein")
+        return true;
+    }
+    else{
+        console.log("Väärä salasana")
+        return false;
+    }
+}
+
+
 function loadUsers(file) {
     if (!fs.existsSync(file)) return [];
     return JSON.parse(fs.readFileSync(file));
