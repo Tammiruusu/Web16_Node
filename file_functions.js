@@ -20,9 +20,11 @@ async function saveUserToJson(username,password){
     }
 
     //hashataan salasana
-    const hashed = await bcrypt.hash(password, 12)
-
-    users.push({username,password:hashed})
+    // const hashed = await bcrypt.hash(password, 12)
+    // users.push({username,password:hashed})
+    
+    //tallenetaan käyttäjä ilman hashaysta
+    users.push({username,password})
 
 
 

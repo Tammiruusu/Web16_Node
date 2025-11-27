@@ -58,20 +58,26 @@ app.post('/login', async(req, res) => {
     let passwordExists = false;
 
     // Iterate over the array using forEach
-    users.forEach(u => {
-      if (u.username === user || u.password=== pWord) { // assuming each user object has a 'username' property
+    // users.forEach(u => {
+    //for (u of users) voi breakata, for eachiä ei voi breakata, vaan koodi käy kaikki usenamet läpi yksi kerrallaan ja siirtyy elseen muuten. 
+    for (u of users) {
+      if (u.username === user || u.password === pWord) { // assuming each user object has a 'username' property
         console.log(`Username "${user}" found!`);
         usernameExists = true;
         console.log(`Password"${pWord}" found!`);
         passwordExists = true;
         res.render('welcome', {kayttajanimi:req.body.username, randomQuote:randomQuote})
-        // Note: cannot break out of forEach, but can use a flag
-    }}); 
-
-    if (!usernameExists || !passwordExists) {
+        break
+    } else {
       res.render('login', {virhe: "Virheelliset tiedot"})
       console.log(`Username "${user}" not found.`);
     }
+  }; 
+
+    // if (!usernameExists || !passwordExists) {
+    //   res.render('login', {virhe: "Virheelliset tiedot"})
+    //   console.log(`Username "${user}" not found.`);
+    // }
 
 
     // const hashed = "$2b$12$/F784Xp2mRDdpVM5P86R7uAzKZCRaTAOgHNcVO/42l2GiYBGqM1sy"
@@ -87,10 +93,10 @@ app.post('/login', async(req, res) => {
 })
 
 
-app.get('/', (req, res) => {
+// app.get('/', (req, res) => {
   
 
-});
+// });
 
 
 // Handle form submission
