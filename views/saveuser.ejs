@@ -10,10 +10,21 @@
             color: rgb(245, 165, 113);
         }
 
-        h1{
-            font-size: 45px;
-            font-weight: bolder;
-            color: rgb(247, 96, 50);
+        #login_form{
+            margin-top: 200px;
+        }
+
+        #submit_button{
+            background-color:rgb(247, 96, 50);
+            color: rgb(1, 33, 46);
+            padding: 5px 30px;
+            border-radius: 15px;
+            border: 0px;
+        }
+
+        #submit_button:hover {
+            background-color: rgb(245, 165, 113);
+            color: rgb(1, 33, 46);
         }
 
     </style>
@@ -22,7 +33,7 @@
     <center>
     <h1> Tervetuloa</h1><br>
 
-        <form method="post" action="/saveuser">
+        <form method="post" id="login_form" action="/saveuser">
             <p>
                 <label for="username">Username:</label>
                 <input type="text" name="username">                
@@ -32,7 +43,7 @@
                 <input type="password" name="password">                
             </p>
             <p>
-                <input type="submit" value="SAVE USER">
+                <input type="submit" id="submit_button" value="SAVE USER">
             </p>        
         </form>
         </center>
